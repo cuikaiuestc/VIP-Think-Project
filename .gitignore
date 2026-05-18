@@ -1,0 +1,70 @@
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.token
+*.secret
+secrets/
+config/private/
+config/local.*
+
+# Local/private runtime data
+runtime/private/
+private/
+tmp/
+temp/
+downloads/
+exports/
+reports/private/
+reports/tmp/
+raw-captures/
+raw-sources/
+
+# Generated packages and build outputs
+dist/
+build/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.next/
+
+# Logs and debug artifacts
+*.log
+*.trace
+*.har
+
+# Raw business data and unreviewed exports
+data/raw/
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.zip
+*.7z
+*.rar
+*.pdf
+*.docx
+*.pptx
+
+# Unreviewed screenshots and captures
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json

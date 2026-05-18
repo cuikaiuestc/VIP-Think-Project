@@ -1,0 +1,125 @@
+{
+  "categories": {
+    "01-product-map": ["help center", "navigation", "quick start", "homepage", "category", "入门", "帮助中心", "分类", "热门内容"],
+    "02-ads-workflow": ["ads", "campaign", "create ad", "account", "promotion", "推广", "创建广告", "广告账号", "批量管理广告", "数据分析"],
+    "03-creative-assets": ["creative", "material", "copy", "素材", "素材库", "素材编辑", "文案库", "媒体素材库"],
+    "04-management": ["management", "team", "template", "product", "管理", "团队", "用户", "广告模板", "产品管理"],
+    "05-tools-automation": ["tools", "task", "scheduled report", "facebook page", "tiktok", "youtube", "工具", "任务中心", "定时报表"],
+    "06-ai-assistant": ["ai assistant", "auto optimize", "auto create", "AI 助手", "自动优化", "自动创建广告", "一键上单"],
+    "07-open-api": ["open api", "request protocol", "report api", "material api", "接口", "请求协议", "报表API", "素材库API"],
+    "08-release-notes": ["release", "announcement", "update", "功能更新", "公告"],
+    "09-patterns": []
+  },
+  "routes": [
+    {
+      "category": "01-product-map",
+      "fields": ["source", "title", "text"],
+      "needles": ["XMP 帮助中心首页", "XMP 帮助中心", "浏览所有分类", "热门内容"]
+    },
+    {
+      "category": "08-release-notes",
+      "fields": ["title", "source"],
+      "needles": ["功能更新公告", "gong-neng-geng-xin", "2026-nian", "2025-gong-neng", "2024功能更新", "2023功能更新", "2022功能更新"]
+    },
+    {
+      "category": "04-management",
+      "fields": ["title", "source"],
+      "needles": ["管理团队和用户", "team", "添加广告账号", "广告模板", "产品管理", "管理说明"]
+    },
+    {
+      "category": "02-ads-workflow",
+      "fields": ["title", "source"],
+      "needles": ["创建广告", "create_ad_Guide", "推广", "批量管理广告", "数据分析"]
+    },
+    {
+      "category": "05-tools-automation",
+      "fields": ["title", "source"],
+      "needles": ["定时报表", "report-timer-cn", "任务中心", "Facebook主页", "TikTok帖子", "YouTube视频", "工具"]
+    },
+    {
+      "category": "07-open-api",
+      "fields": ["source", "title", "text"],
+      "needles": ["Open API", "接口请求协议", "广告报表API", "素材报表API", "素材库API"]
+    },
+    {
+      "category": "06-ai-assistant",
+      "fields": ["source", "title", "text"],
+      "needles": ["AI 助手", "自动优化", "自动创建广告", "一键上单"]
+    },
+    {
+      "category": "03-creative-assets",
+      "fields": ["source", "title", "text"],
+      "needles": ["素材报表", "素材库", "素材编辑", "文案库", "媒体素材库"]
+    },
+    {
+      "category": "04-management",
+      "fields": ["source", "title", "text"],
+      "needles": ["管理", "团队和用户", "广告模板", "产品管理", "添加广告账号"]
+    },
+    {
+      "category": "02-ads-workflow",
+      "fields": ["source", "title", "text"],
+      "needles": ["推广", "创建广告", "广告账号", "批量管理广告", "数据分析"]
+    },
+    {
+      "category": "05-tools-automation",
+      "fields": ["source", "title", "text"],
+      "needles": ["工具", "Facebook主页", "TikTok帖子", "YouTube视频", "任务中心", "定时报表"]
+    },
+    {
+      "category": "08-release-notes",
+      "fields": ["source", "title", "text"],
+      "needles": ["功能更新公告", "2026年功能更新公告", "2025年功能更新公告"]
+    }
+  ],
+  "default_category": "01-product-map",
+  "default_confidentiality": "public",
+  "min_chars": 300,
+  "min_substantial_chars": 250,
+  "min_unique_line_ratio": 0.2,
+  "stop_lines": ["Powered by", "免费试用", "XMP官网", "ZH"],
+  "noise_phrases": ["Powered by HelpLook", "rand=", "data:image/svg+xml"],
+  "key_terms": ["快速入门", "核心功能", "热门内容", "创建广告", "素材报表", "管理团队", "Open API", "自动优化", "定时报表", "功能更新"],
+  "limit_terms": ["首页只提供导航入口", "需打开子页面确认细节", "不代表完整产品说明"],
+  "aliases": {
+    "广告账号": ["account", "ad account", "添加广告账号"],
+    "创建广告": ["create ad", "campaign creation", "投放创建"],
+    "素材": ["creative", "material", "素材库", "素材报表"],
+    "AI 助手": ["AI Assistant", "自动优化", "自动创建广告"],
+    "一键上单": ["一键上单是什么", "一键上单"],
+    "Open API": ["接口", "API", "报表API", "素材库API"],
+    "接口请求协议": ["请求协议", "接口请求协议怎么查", "request protocol"],
+    "不能投放": ["不能投放", "账号状态", "权限不足", "后台状态", "错误提示"],
+    "团队管理": ["team", "user management", "团队和用户管理"]
+  },
+  "alias_candidates": ["XMP", "HelpLook", "添加广告账号", "创建广告", "素材报表", "AI 助手", "Open API", "定时报表"],
+  "pattern_hints": {
+    "xmp-help-routing.md": ["XMP 帮助中心", "热门内容", "浏览所有分类", "Open API", "AI 助手"],
+    "xmp-support-scenarios.md": ["添加广告账号", "创建广告", "素材报表", "团队和用户管理"]
+  },
+  "pattern_reference_boost": 20,
+  "max_companion_patterns": 1,
+  "no_companion_patterns": ["account-state-blocked.md"],
+  "validation_queries": {
+    "find_create_ad": {
+      "query": "XMP 怎么创建广告",
+      "expected": ["create-ad", "xmp-help-routing"],
+      "limit": 8
+    },
+    "find_material_report": {
+      "query": "XMP 素材报表和素材库在哪里",
+      "expected": ["materials-and-reports", "source-help-xmp-mobvista-com-docs-creative-report"],
+      "limit": 8
+    },
+    "find_api_docs": {
+      "query": "XMP Open API 有哪些入口",
+      "expected": ["open-api", "xmp-help-routing"],
+      "limit": 8
+    },
+    "find_team_management": {
+      "query": "XMP 团队和用户管理入口",
+      "expected": ["team-and-account-management", "source-help-xmp-mobvista-com-docs-team"],
+      "limit": 8
+    }
+  }
+}

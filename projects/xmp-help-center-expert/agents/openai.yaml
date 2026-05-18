@@ -1,0 +1,7 @@
+interface:
+  display_name: "XMP Help Center Expert"
+  short_description: "Answer XMP Help Center questions with traceable official evidence."
+  default_prompt: "Use $xmp-help-center-expert to answer this XMP question from the official help-center knowledge base with cited local references."
+
+policy:
+  allow_implicit_invocation: true

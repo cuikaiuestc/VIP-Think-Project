@@ -1,0 +1,146 @@
+[
+  {
+    "id": "route_create_ad",
+    "mode": "how-to",
+    "prompt": "XMP 怎么创建广告？",
+    "must_check": [
+      "references/09-patterns/create-ad.md",
+      "references/02-ads-workflow/source-help-xmp-mobvista-com-docs-create-ad-guide.md",
+      "confidence is firm or tentative based on matched official detail"
+    ],
+    "must_not_do": [
+      "claim the user's ad will deliver or pass review"
+    ]
+  },
+  {
+    "id": "find_material_library_report",
+    "mode": "route",
+    "prompt": "XMP 素材库和素材报表在哪里？",
+    "must_check": [
+      "references/09-patterns/materials-and-reports.md",
+      "references/03-creative-assets/source-help-xmp-mobvista-com-docs-mvbmmv.md",
+      "references/03-creative-assets/source-help-xmp-mobvista-com-docs-creative-report.md"
+    ],
+    "must_not_do": [
+      "infer live material performance from public docs"
+    ]
+  },
+  {
+    "id": "team_management_entry",
+    "mode": "route",
+    "prompt": "XMP 团队和用户管理入口在哪里？",
+    "must_check": [
+      "references/09-patterns/team-and-account-management.md",
+      "references/04-management/source-help-xmp-mobvista-com-docs-team.md",
+      "references/09-patterns/xmp-help-routing.md"
+    ],
+    "must_not_do": [
+      "claim the user has a specific role or permission"
+    ]
+  },
+  {
+    "id": "open_api_docs",
+    "mode": "api-reference",
+    "prompt": "XMP Open API 有哪些文档？",
+    "must_check": [
+      "references/09-patterns/open-api.md",
+      "references/07-open-api/source-help-xmp-mobvista-com-docs-open-api-desc.md",
+      "references/07-open-api/source-help-xmp-mobvista-com-docs-request-protocol.md"
+    ],
+    "must_not_do": [
+      "confirm private API permission or token validity"
+    ]
+  },
+  {
+    "id": "request_protocol",
+    "mode": "api-reference",
+    "prompt": "XMP 接口请求协议怎么查？",
+    "must_check": [
+      "references/09-patterns/open-api.md",
+      "references/07-open-api/source-help-xmp-mobvista-com-docs-request-protocol.md",
+      "Official Basis explains what the protocol source supports"
+    ],
+    "must_not_do": [
+      "invent request fields not present in the local reference"
+    ]
+  },
+  {
+    "id": "ai_assistant_capability",
+    "mode": "explain",
+    "prompt": "XMP AI Assistant 能做什么？",
+    "must_check": [
+      "references/09-patterns/ai-assistant.md",
+      "references/06-ai-assistant/source-help-xmp-mobvista-com-docs-ai-assistant.md",
+      "Limits mention feature access is account-specific"
+    ],
+    "must_not_do": [
+      "guarantee optimization results"
+    ]
+  },
+  {
+    "id": "one_click_listing",
+    "mode": "explain",
+    "prompt": "XMP 一键上单是什么？",
+    "must_check": [
+      "references/09-patterns/ai-assistant.md",
+      "references/06-ai-assistant/source-help-xmp-mobvista-com-docs-yi-jian-shang-dan.md",
+      "answer uses official KB language rather than speculation"
+    ],
+    "must_not_do": [
+      "claim the user's account has access to the feature"
+    ]
+  },
+  {
+    "id": "release_2026",
+    "mode": "release-lookup",
+    "prompt": "帮我查 XMP 2026 年功能更新公告。",
+    "must_check": [
+      "references/09-patterns/release-lookup.md",
+      "references/08-release-notes/source-help-xmp-mobvista-com-docs-2026-nian-gong-neng-geng-xin-gong-gao.md",
+      "Limits mention local capture date/scope"
+    ],
+    "must_not_do": [
+      "claim coverage of updates after the captured source without checking live"
+    ]
+  },
+  {
+    "id": "scheduled_report_entry",
+    "mode": "route",
+    "prompt": "XMP 定时报表入口在哪里？",
+    "must_check": [
+      "references/09-patterns/tools-and-automation.md",
+      "references/05-tools-automation/source-help-xmp-mobvista-com-docs-report-timer-cn.md",
+      "Verification tells user where to confirm in XMP/help center"
+    ],
+    "must_not_do": [
+      "diagnose why a scheduled report failed without user-provided error details"
+    ]
+  },
+  {
+    "id": "account_not_delivering_blocked",
+    "mode": "route",
+    "prompt": "我的 XMP 账号为什么不能投放？",
+    "must_check": [
+      "references/09-patterns/account-state-blocked.md",
+      "confidence is blocked or tentative",
+      "asks for XMP backend screenshot, exact error, page path, permission, or account state"
+    ],
+    "must_not_do": [
+      "pretend to know the user's private account status from public docs"
+    ]
+  },
+  {
+    "id": "official_source_refresh_candidate",
+    "mode": "route",
+    "prompt": "我看到一个新的官方帮助页 https://help-xmp.mobvista.com/docs/new-xmp-feature ，这个内容你之后能纳入知识库吗？",
+    "must_check": [
+      "references/source-refresh-candidates.md",
+      "answer includes Source Refresh Candidate only because the URL is official or likely official",
+      "asks for confirmation before capture or distillation"
+    ],
+    "must_not_do": [
+      "crawl automatically",
+      "ingest private or non-official sources"
+    ]
+  }
+]

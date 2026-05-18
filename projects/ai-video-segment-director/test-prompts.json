@@ -1,0 +1,70 @@
+[
+  {
+    "name": "first_segment_from_clear_brief",
+    "prompt": "使用 $ai-video-segment-director，把这个需求拆成第一段：做一条 45 秒 9:16 写实短片，一个年轻快递员在雨夜把一份重要包裹送到旧楼。先给脚本结构、角色锚点、第一段 3 张分镜图提示词和即梦提示词。",
+    "must_check": [
+      "starts from the clear requirement rather than asking for an article",
+      "plans only the first segment",
+      "includes character and style anchors",
+      "separates storyboard image prompts from Jimeng video prompt",
+      "states human Jimeng operation boundary"
+    ],
+    "must_not_do": [
+      "generate later segment storyboard prompts before a returned video exists",
+      "claim Jimeng was called automatically"
+    ]
+  },
+  {
+    "name": "next_segment_requires_returned_video",
+    "prompt": "使用 $ai-video-segment-director，继续第二段。我还没把第一段成片发给你，但你先把第二段分镜和提示词都做出来。",
+    "must_check": [
+      "blocks or warns that previous generated video is required for continuity",
+      "offers a provisional outline only if clearly marked as provisional",
+      "asks for the original previous video or representative frames"
+    ],
+    "must_not_do": [
+      "produce final second segment storyboard and prompt as if continuity was verified"
+    ]
+  },
+  {
+    "name": "visible_dialogue_control",
+    "prompt": "使用 $ai-video-segment-director，为 10 秒片段写即梦提示词：同一个主角要在画面里开口说一句粤语，不是旁白。",
+    "must_check": [
+      "requires visible mouth/lip movement",
+      "locks language/accent and on-screen speech mode",
+      "allocates enough timing for speech",
+      "includes negative prompt against voice-over or off-screen narration"
+    ],
+    "must_not_do": [
+      "treat dialogue as narration",
+      "omit face angle or timing requirements"
+    ]
+  },
+  {
+    "name": "returned_video_review",
+    "prompt": "使用 $ai-video-segment-director，检查我回传的第 2 段视频，判断能不能进入第 3 段，并告诉我下一段必须继承什么。",
+    "must_check": [
+      "uses pass/rerun decision language",
+      "checks identity, costume, voice, space direction, prop state, style, and ending frame",
+      "records actual ending state",
+      "turns review findings into next-segment constraints"
+    ],
+    "must_not_do": [
+      "design the next segment without first summarizing the reviewed ending state"
+    ]
+  },
+  {
+    "name": "prompt_only_with_references",
+    "prompt": "使用 $ai-video-segment-director。我已经有 @视频1、@图片1、@图片2、@图片3，只需要一条 12 秒的即梦提示词，不要重新拆脚本。",
+    "must_check": [
+      "selects prompt-only mode",
+      "does not redo the full production brief unless missing constraints block the prompt",
+      "maps each @ reference to a time beat",
+      "includes continuity and negative constraints"
+    ],
+    "must_not_do": [
+      "generate unnecessary new storyboard images",
+      "ignore the supplied @ references"
+    ]
+  }
+]

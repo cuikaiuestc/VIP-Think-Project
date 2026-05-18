@@ -1,0 +1,14 @@
+# Notice
+
+This repository contains a Codex skill package, validation scripts, routing notes,
+and locally archived public XMP Help Center evidence.
+
+- Skill instructions, validators, routing glue, and packaging files are provided
+  under the repository license.
+- XMP, Mobvista, HelpLook, source help-center text, screenshots, images, product
+  names, and related trademarks remain the property of their respective owners.
+- Public help-center captures are retained only for provenance, traceability, and
+  internal answer verification. They do not grant any additional rights to the
+  underlying third-party content.
+- This package does not provide private XMP account access, backend state, API
+  credentials, or real-time product permissions.

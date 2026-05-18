@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Video Segment Director"
+  short_description: "Segmented AI video workflow director"
+  default_prompt: "Use $ai-video-segment-director to turn my video requirement into segmented storyboards, Jimeng prompts, and continuity review steps."
