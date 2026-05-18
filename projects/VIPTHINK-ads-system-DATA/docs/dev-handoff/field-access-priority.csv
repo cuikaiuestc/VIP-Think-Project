@@ -1,0 +1,42 @@
+﻿standard_field_name,bi_field_name,source_judgment,data_type,grain,primary_or_join_key,reports,recommended_system_use,access_priority,confidence,open_question
+ad_id,广告ID,Meta 字段候选,string,ad,候选 join key,REDACTED_REPORT_A,连接 Meta Ad 与 BI 后端指标；但必须排除总计层级,P0,medium,是否稳定等于 Meta ad_id？是否存在空值/总计/多广告合并？
+adset_id,广告组ID,Meta 字段候选,string,adset/ad,候选 join key,REDACTED_REPORT_A,连接 Meta Ad Set 与 BI 后端指标,P0,medium,是否稳定等于 Meta adset_id？
+ad_name,广告名称,Meta 字段候选,string,ad,辅助 join/display,REDACTED_REPORT_A,开发调试和人工核对,P1,medium,同名广告是否重复？是否只能展示不能 join？
+account_name,投放账户,BI 改名/Meta 候选,string,account,弱 join key,REDACTED_REPORT_A,账户维度过滤和核对,P1,low,是否有 Meta account_id？只有账户名不建议作为主键。
+report_date,日期/开始日期/结束日期,BI 参数/时间字段,date,date,分区键,4 张 SPREADSHEET_REPORT,数据分区、时间窗口、快照判断,P0,high,结束日期和快照日期是否等价？
+region_tier,REDACTED_DIM_REGION_TIER,内部业务维度,enum,region,维度,4 张 SPREADSHEETREPORT/参数,REDACTED_REGION_STRATEGY_ANALYSIS,P1,medium,REDACTED_DIM_REGION_TIER枚举和REDACTED_DIM_REGION_SEGMENT映射由谁维护？
+region_segment,REDACTED_DIM_REGION_SEGMENT,内部业务维度,enum,region,维度,REDACTED_REPORT_B,REDACTED_REGION_STRATEGY_ANALYSIS,P1,medium,是否是国家/市场维度？
+platform,REDACTED_DIM_PLATFORM/REDACTED_DIM_PLATFORM_WEEKLY/REDACTED_DIM_COST_PLATFORM,BI 改名/渠道维度,enum,platform,维度,多张,过滤 Facebook/Meta 渠道,P0,medium,REDACTED_PLATFORM_VALUE、REDACTED_PLATFORM_VALUE_B 等与 Meta 平台字段如何映射？
+main_owner,REDACTED_DIM_OWNER/REDACTED_DIM_OWNER_WEEKLY,内部业务维度,string,owner,维度,creative_asset维度/渠道日监控,负责人/REDACTED_DIM_OWNER维度展示,P1,medium,是否属于人员字段，是否允许进入系统？
+creative_type,REDACTED_CREATIVE_TYPE,REDACTED_INTERNAL_TAG,enum,creative,维度,creative_asset维度/REDACTED_REGION_A测试,REDACTED_CREATIVE_TYPE诊断,P1,medium,枚举值由谁维护？是否与creative_asset系统一致？
+launch_date,上线日期/上线开始日期/上线结束日期,内部/Meta 混合候选,date,ad/creative,辅助键,REDACTED_REPORT_A,creative_asset生命周期和上线批次判断,P1,medium,是否来自 Meta created_time 还是内部上线日期？
+spend,消耗/实际消耗/消耗(不含CPT),Meta 或 BI 回写字段候选,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,是否含 CPT？不同报表消耗口径是否一致？
+impressions,曝光,Meta 字段候选,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,是否来自 Meta impressions？
+clicks,点击,Meta 字段候选,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,是否是 clicks 还是 inline_link_clicks？
+cpm,CPM,BI 派生/Meta 指标,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,公式是否统一为 spend/impressions*1000？
+ctr,CTR,BI 派生/Meta 指标,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,分母是曝光，分子是点击还是链接点击？
+cvr,CVR,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,REDACTED_CONVERSION定义是什么？Meta REDACTED_CONVERSION还是内部REDACTED_CONVERSION_A？
+lead_count,REDACTED_CONVERSION_A_COUNT,内部业务系统,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,REDACTED_CONVERSION_A定义、去重、归因窗口来自哪里？
+booking_count,REDACTED_CONVERSION_B_COUNT,内部业务系统,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,REDACTED_CONVERSION_B归因到广告/日期的规则是什么？
+show_count,REDACTED_CONVERSION_C_COUNT/当月REDACTED_CONVERSION_C_COUNT,内部业务系统,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,REDACTED_CONVERSION_C是否按当月、滚动还是订单归因？
+paid_course_count,REDACTED_PAID_EVENT/当月REDACTED_PAID_EVENT,内部业务系统,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,REDACTED_PAID_EVENT和REDACTED_PAID_EVENT是否同义？
+gmv,GMV/当月GMV/滚动GMV,内部业务系统,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,币种、退款、滚动窗口口径是什么？
+roi2,ROI2/当月ROI2/滚动ROI2,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,ROI2 公式必须确认，不建议开发自行猜。
+lead_cost,REDACTED_CONVERSION_A_COST,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,公式和消耗口径需确认。
+booking_cost,REDACTED_CONVERSION_B_COST,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P0,medium,公式和REDACTED_CONVERSION_B归因需确认。
+waste_spend,空耗金额/空耗消耗,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,空耗定义需确认。
+waste_rate,空耗金额占比/空耗占比,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,空耗率公式需确认。
+lead_to_booking_rate,REDACTED_CONVERSION_A_TO_B_RATE/REDACTED_CONVERSION_B_RATE,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,分子分母和时间归因需确认。
+booking_to_show_rate,REDACTED_CONVERSION_B_TO_C_RATE,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,分子分母和归因窗口需确认。
+show_to_paid_rate,REDACTED_CONVERSION_C_TO_PAID_RATE,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,是否REDACTED_CONVERSION_C到REDACTED_PAID_EVENT？
+lead_to_paid_rate,REDACTED_CONVERSION_A_TO_PAID_RATE/当月REDACTED_CONVERSION率/滚动REDACTED_CONVERSION率,BI 派生,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,P1,medium,当月和滚动不能混用。
+effect_count,成效,未确认,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,暂不接,low,成效定义不清，可能不是稳定系统字段。
+effect_cost,成效成本,BI 派生/未确认,number,report row,not key,4 张报表中部分出现,指标展示/诊断候选,暂不接,low,成效定义不清。
+is_enabled,REDACTED_FLAG_B/REDACTED_FLAG_B,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,P1,medium,字段维护系统、权限和枚举需要确认。
+is_high_potential,REDACTED_FLAG_A,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,P1,medium,字段维护系统、权限和枚举需要确认。
+is_interested,REDACTED_FLAG_C/REDACTED_FLAG_C,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,暂不接,medium,字段维护系统、权限和枚举需要确认。
+creative_source,REDACTED_CREATIVE_SOURCE,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,P1,medium,字段维护系统、权限和枚举需要确认。
+requester,REDACTED_REQUESTER,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,暂不接,medium,字段维护系统、权限和枚举需要确认。
+production_month,REDACTED_CREATIVE_PRODUCTION_PERIOD,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,P1,medium,字段维护系统、权限和枚举需要确认。
+kol,KOL,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,暂不接,medium,字段维护系统、权限和枚举需要确认。
+preview_url,预览链接,REDACTED_INTERNAL_TAG/creative_asset流程字段,string/enum,creative,not key,REDACTED_REPORT_D/周报样本,REDACTED_CREATIVE_TAGS与策略解释；不建议作为 P0 核心接入,暂不接,medium,字段维护系统、权限和枚举需要确认。

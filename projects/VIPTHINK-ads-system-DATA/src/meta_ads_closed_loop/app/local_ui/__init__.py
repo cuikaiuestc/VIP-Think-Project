@@ -1,0 +1,2 @@
+"""Local static UI builder."""
+

@@ -1,0 +1,59 @@
+# Local/private runtime data
+runtime/private/*
+!runtime/private/.gitkeep
+runtime/tmp/
+runtime/*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Node / frontend, if added later
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json
+
+# Local environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.token
+*.secret
+
+# Local/private config and secrets
+config/local.*
+config/private/
+secrets/
+.secrets/
+
+# Raw business data, exports, and generated private reports
+data/raw/
+data/private/
+exports/
+downloads/
+reports/private/
+reports/tmp/
+*.log
+*.xlsx
+*.xls
+*.tsv
+*.zip
+*.7z
+*.rar

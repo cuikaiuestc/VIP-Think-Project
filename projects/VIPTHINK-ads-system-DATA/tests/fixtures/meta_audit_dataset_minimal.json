@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "api_version": "v25.0",
+    "generated_at": "2026-05-17T10:00:00+08:00",
+    "read_only": true,
+    "date_preset": "last_7d"
+  },
+  "endpoints": {
+    "ad_account": {
+      "id": "sample_account",
+      "name": "示例 Meta 投放账户",
+      "currency": "USD",
+      "timezone_name": "Asia/Shanghai",
+      "account_status": 1
+    },
+    "campaigns": {
+      "data": [
+        {
+          "id": "campaign_high_spend_no_leads",
+          "name": "REDACTED_REGION_A H5 表单 Campaign",
+          "effective_status": "ACTIVE"
+        },
+        {
+          "id": "campaign_high_cpl",
+          "name": "REDACTED_REGION_CREDACTED_OFFERREDACTED_CONVERSION Campaign",
+          "effective_status": "ACTIVE"
+        }
+      ]
+    },
+    "adsets": {
+      "data": [
+        {
+          "id": "adset_001",
+          "name": "REDACTED_REGION_AREDACTED_FLAG_AREDACTED_AUDIENCE",
+          "campaign_id": "campaign_high_spend_no_leads",
+          "effective_status": "ACTIVE"
+        }
+      ]
+    },
+    "ads": {
+      "data": [
+        {
+          "id": "ad_001",
+          "name": "AI REDACTED_PRODUCTcreative_asset A",
+          "campaign_id": "campaign_high_spend_no_leads",
+          "adset_id": "adset_001",
+          "effective_status": "ACTIVE"
+        }
+      ]
+    },
+    "insights_campaign": {
+      "data": [
+        {
+          "campaign_id": "campaign_high_spend_no_leads",
+          "campaign_name": "REDACTED_REGION_A H5 表单 Campaign",
+          "spend": "180.50",
+          "impressions": "25000",
+          "inline_link_clicks": "120",
+          "actions": [
+            {
+              "action_type": "landing_page_view",
+              "value": "80"
+            }
+          ]
+        },
+        {
+          "campaign_id": "campaign_high_cpl",
+          "campaign_name": "REDACTED_REGION_CREDACTED_OFFERREDACTED_CONVERSION Campaign",
+          "spend": "160.00",
+          "impressions": "12000",
+          "inline_link_clicks": "240",
+          "actions": [
+            {
+              "action_type": "lead",
+              "value": "4"
+            },
+            {
+              "action_type": "purchase",
+              "value": "2"
+            },
+            {
+              "action_type": "landing_page_view",
+              "value": "120"
+            }
+          ]
+        }
+      ]
+    },
+    "insights_adset": {
+      "data": [
+        {
+          "campaign_id": "campaign_high_spend_no_leads",
+          "adset_id": "adset_001",
+          "adset_name": "REDACTED_REGION_AREDACTED_FLAG_AREDACTED_AUDIENCE",
+          "spend": "180.50",
+          "actions": [
+            {
+              "action_type": "landing_page_view",
+              "value": "80"
+            }
+          ]
+        }
+      ]
+    },
+    "insights_ad": {
+      "data": [
+        {
+          "campaign_id": "campaign_high_spend_no_leads",
+          "adset_id": "adset_001",
+          "ad_id": "ad_001",
+          "ad_name": "AI REDACTED_PRODUCTcreative_asset A",
+          "spend": "180.50",
+          "inline_link_clicks": "120",
+          "actions": [
+            {
+              "action_type": "landing_page_view",
+              "value": "80"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "summary": {
+    "account": {
+      "id": "sample_account",
+      "name": "示例 Meta 投放账户",
+      "currency": "USD",
+      "timezone": "Asia/Shanghai",
+      "account_status": 1
+    },
+    "object_counts": {
+      "campaigns": 2,
+      "adsets": 1,
+      "ads": 1
+    },
+    "insight_rows": {
+      "campaign": 2,
+      "adset": 1,
+      "ad": 1
+    }
+  },
+  "errors": []
+}
+

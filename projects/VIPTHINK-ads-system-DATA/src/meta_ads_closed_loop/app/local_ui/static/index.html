@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meta 投放闭环系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="闭环导航">
+        <div class="brand">
+          <div class="brand-mark">M</div>
+          <div>
+            <h1>Meta 投放闭环</h1>
+            <p>本地 read-only 工作台</p>
+          </div>
+        </div>
+        <nav class="nav-list">
+          <button class="nav-item active" data-target="overview">
+            <span class="icon" aria-hidden="true">⌂</span>
+            <span>账户总览</span>
+          </button>
+          <button class="nav-item" data-target="campaigns">
+            <span class="icon" aria-hidden="true">≣</span>
+            <span>Campaign</span>
+          </button>
+          <button class="nav-item" data-target="diagnostics">
+            <span class="icon" aria-hidden="true">!</span>
+            <span>异常诊断</span>
+          </button>
+          <button class="nav-item" data-target="drafts">
+            <span class="icon" aria-hidden="true">✎</span>
+            <span>本地草稿</span>
+          </button>
+          <button class="nav-item" data-target="safety">
+            <span class="icon" aria-hidden="true">⊘</span>
+            <span>安全确认</span>
+          </button>
+          <button class="nav-item" data-target="report">
+            <span class="icon" aria-hidden="true">▥</span>
+            <span>报表复盘</span>
+          </button>
+        </nav>
+        <div class="source-box">
+          <span class="status-dot"></span>
+          <div>
+            <strong id="sourceLabel">读取中</strong>
+            <p id="updatedAt">--</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2 id="accountName">Meta 投放账户</h2>
+            <p id="accountMeta">只读数据准备中</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" id="refreshButton" title="刷新本地数据视图" aria-label="刷新本地数据视图">
+              ↻
+            </button>
+            <button class="primary-button" id="draftPrimary">生成首条草稿</button>
+          </div>
+        </header>
+
+        <section id="overview" class="panel-section active-section">
+          <div class="metric-grid" id="metricGrid"></div>
+          <div class="workflow-strip" id="workflowStrip"></div>
+        </section>
+
+        <section id="campaigns" class="panel-section">
+          <div class="section-heading">
+            <h3>Campaign 下钻</h3>
+            <div class="segmented">
+              <button class="segment active" data-filter="all">全部</button>
+              <button class="segment" data-filter="active">投放中</button>
+              <button class="segment" data-filter="risk">有诊断</button>
+            </div>
+          </div>
+          <div class="object-summary-grid">
+            <article class="object-panel">
+              <h4>投放账户</h4>
+              <div class="mini-table" id="accountTable"></div>
+            </article>
+            <article class="object-panel">
+              <h4>广告组 Ad Set</h4>
+              <div class="mini-table" id="adsetTable"></div>
+            </article>
+            <article class="object-panel">
+              <h4>广告与creative_asset</h4>
+              <div class="mini-table" id="adTable"></div>
+            </article>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Campaign</th>
+                  <th>状态</th>
+                  <th>消耗</th>
+                  <th>点击</th>
+                  <th>LPV</th>
+                  <th>线索</th>
+                  <th>购买</th>
+                  <th>CTR</th>
+                  <th>CPL / CPA</th>
+                  <th>层级</th>
+                  <th>处理</th>
+                </tr>
+              </thead>
+              <tbody id="campaignTable"></tbody>
+            </table>
+          </div>
+          <div class="drilldown-grid">
+            <article class="drilldown-panel">
+              <div class="drilldown-head">
+                <div>
+                  <span>所选 Campaign</span>
+                  <strong id="selectedCampaignName">请选择 Campaign</strong>
+                </div>
+                <small id="selectedCampaignMeta">--</small>
+              </div>
+              <div class="table-wrap compact-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ad Set</th>
+                      <th>状态</th>
+                      <th>消耗</th>
+                      <th>点击</th>
+                      <th>LPV</th>
+                      <th>线索</th>
+                      <th>购买</th>
+                      <th>CTR</th>
+                      <th>CPL / CPA</th>
+                      <th>Ad</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adsetDrilldownTable"></tbody>
+                </table>
+              </div>
+            </article>
+            <article class="drilldown-panel">
+              <div class="drilldown-head">
+                <div>
+                  <span>所选 Ad Set</span>
+                  <strong id="selectedAdsetName">请选择 Ad Set</strong>
+                </div>
+                <small id="selectedAdsetMeta">--</small>
+              </div>
+              <div class="table-wrap compact-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ad</th>
+                      <th>creative_asset</th>
+                      <th>状态</th>
+                      <th>消耗</th>
+                      <th>点击</th>
+                      <th>LPV</th>
+                      <th>线索</th>
+                      <th>购买</th>
+                      <th>CTR</th>
+                      <th>CPL / CPA</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adDrilldownTable"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="diagnostics" class="panel-section">
+          <div class="section-heading">
+            <h3>异常诊断</h3>
+            <label class="select-label">
+              优先级
+              <select id="priorityFilter">
+                <option value="all">全部</option>
+                <option value="高">高</option>
+                <option value="中">中</option>
+              </select>
+            </label>
+          </div>
+          <div class="diagnosis-list" id="diagnosisList"></div>
+        </section>
+
+        <section id="drafts" class="panel-section">
+          <div class="section-heading">
+            <h3>本地优化草稿</h3>
+            <span class="muted-count" id="draftCount">0 份</span>
+          </div>
+          <div class="draft-list" id="draftList"></div>
+        </section>
+
+        <section id="safety" class="panel-section">
+          <div class="section-heading">
+            <h3>安全确认</h3>
+            <button class="danger-button" id="simulateDanger">模拟暂停 Campaign</button>
+          </div>
+          <div class="safety-grid">
+            <div class="safety-panel">
+              <h4>真实写操作</h4>
+              <p>发布、暂停、预算、出价、creative_asset替换、复制后上线、删除全部 blocked。</p>
+            </div>
+            <div class="safety-panel">
+              <h4>本地允许动作</h4>
+              <p>草稿、任务、笔记、复盘和审计日志只保存在本地。</p>
+            </div>
+          </div>
+          <div class="blocked-log" id="blockedLog"></div>
+        </section>
+
+        <section id="report" class="panel-section">
+          <div class="section-heading">
+            <h3>报表复盘</h3>
+            <button class="secondary-button" id="copyReport">复制复盘摘要</button>
+          </div>
+          <div class="report-panel">
+            <p id="reportSummary"></p>
+            <div class="report-grid" id="reportGrid"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
