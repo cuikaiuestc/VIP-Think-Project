@@ -11,6 +11,7 @@ The repository is intentionally limited to shareable source assets, documentatio
 | `projects/xmp-help-center-expert/` | `cuikaiuestc/xmp-help-center-expert` | Codex skill and knowledge base for answering XMP Help Center questions with traceable public evidence. |
 | `projects/ai-video-segment-director/` | `cuikaiuestc/ai-video-segment-director` | Codex skill for segmented AI video production, storyboard prompts, and continuity review. |
 | `projects/ai-weekly-progress-report/` | `cuikaiuestc/ai-weekly-progress-report` | Evidence-based weekly AI work progress reporting workflow. |
+| `projects/VIPTHINK-ads-system-DATA/` | `internal de-identified handoff` | Public-safe ads data handoff module covering BI/Meta field inventory, read-only Meta integration evidence, weekly report V0 scripts, tests, and compliance-reviewed engineering artifacts. |
 | `projects/xhs-skill-architecture-report/` | `cuikaiuestc/xhs-skill-architecture-report` | Excluded from this clean public version until generated HTML and image assets pass publication review. |
 
 ## Publishing Boundary
