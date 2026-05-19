@@ -41,5 +41,6 @@ See `PUBLICATION_RULES.md`, `PUBLISH_CHECKLIST.md`, and `COMPLIANCE_AUDIT.md` be
 
 - 2026-05-16: Consolidated existing public repositories into this single repository structure.
 - 2026-05-18: Rebuilt the public version from a whitelist of reviewed source assets and added publication governance files.
+- 2026-05-19: Added the de-identified ads data handoff module to the repository map and confirmed its public-safe publication boundary.
 - Source repositories were copied as content directories, not nested Git repositories.
 - See `MIGRATION_NOTES.md` for source URLs, size notes, and follow-up actions.
