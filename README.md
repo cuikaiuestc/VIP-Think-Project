@@ -12,6 +12,7 @@ The repository is intentionally limited to shareable source assets, documentatio
 | `projects/ai-video-segment-director/` | `cuikaiuestc/ai-video-segment-director` | Codex skill for segmented AI video production, storyboard prompts, and continuity review. |
 | `projects/ai-weekly-progress-report/` | `cuikaiuestc/ai-weekly-progress-report` | Evidence-based weekly AI work progress reporting workflow. |
 | `projects/VIPTHINK-ads-system-DATA/` | `internal de-identified handoff` | Public-safe ads data handoff module covering BI/Meta field inventory, read-only Meta integration evidence, weekly report V0 scripts, tests, and compliance-reviewed engineering artifacts. |
+| `projects/smartbi-data-cli/` | `internal README-only notice` | Public-safe notice for a SmartBI CLI helper. Package body and internal usage details are not included. |
 | `projects/xhs-skill-architecture-report/` | `cuikaiuestc/xhs-skill-architecture-report` | Excluded from this clean public version until generated HTML and image assets pass publication review. |
 
 ## Publishing Boundary
@@ -42,5 +43,6 @@ See `PUBLICATION_RULES.md`, `PUBLISH_CHECKLIST.md`, and `COMPLIANCE_AUDIT.md` be
 - 2026-05-16: Consolidated existing public repositories into this single repository structure.
 - 2026-05-18: Rebuilt the public version from a whitelist of reviewed source assets and added publication governance files.
 - 2026-05-19: Added the de-identified ads data handoff module to the repository map and confirmed its public-safe publication boundary.
+- 2026-05-20: Added README-only notice for the SmartBI Data CLI helper; no package body, credentials, BI structure, or runtime details are published.
 - Source repositories were copied as content directories, not nested Git repositories.
 - See `MIGRATION_NOTES.md` for source URLs, size notes, and follow-up actions.
