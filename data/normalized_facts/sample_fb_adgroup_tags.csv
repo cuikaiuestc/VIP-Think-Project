@@ -1,0 +1,5 @@
+task,report,period,data_as_of,source_path,区域等级,三大区域,渠道一级分类,渠道二级分类,末次渠道二级渠道名称,末次渠道三级渠道名称,末次渠道名称,投放账户,广告组名称,row_count,is_enable,is_high_potential
+sample_tags,FB Sales Detail Last Channel,month_to_date,2026-05-25,sample://adgroup_tags,Region A,Region Group 1,FB,Sample Funnel,Sample Funnel A,Sample Funnel A1,Sample Channel A,SAMPLE_ACCOUNT_A,SAMPLE_ENABLE_GROUP_001,120,true,false
+sample_tags,FB Sales Detail Last Channel,month_to_date,2026-05-25,sample://adgroup_tags,Region A,Region Group 1,FB,Sample Funnel,Sample Funnel B,Sample Funnel B1,Sample Channel B,SAMPLE_ACCOUNT_A,SAMPLE_HIGH_POTENTIAL_GROUP_002,84,false,true
+sample_tags,FB Sales Detail Last Channel,month_to_date,2026-05-25,sample://adgroup_tags,Region B,Region Group 2,FB,Sample Funnel,Sample Funnel C,Sample Funnel C1,Sample Channel C,SAMPLE_ACCOUNT_B,SAMPLE_ENABLE_HIGH_GROUP_003,46,true,true
+

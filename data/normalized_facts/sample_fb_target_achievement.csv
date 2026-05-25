@@ -1,0 +1,5 @@
+task,report,period,data_as_of,source_path,主投,辅投,平台,区域等级,全月预算,消耗MTD,实际消耗,MTD消耗进度,主投例子月目标,主投例子MTD目标,主投例子数,主投例子MTD达成率,主投例子月达成率,例子成本目标,例子成本,约课成本目标,约课成本,当月GMV目标,当月GMV达成,当月GMV达成率,主投当月ROI目标,主投当月ROI达成,滚动GMV目标,滚动GMV,滚动GMV达成率,主投滚动ROI目标,主投滚动ROI达成
+sample_target,FB Target Achievement,month_to_date,2026-05-25,sample://target,Thinking,Sample Support,FB,Region A,45000,30000,30000,0.667,900,660,660,1.000,0.733,50,45,160,135,12000,9300,0.775,1.20,1.31,16000,21000,1.313,1.60,1.85
+sample_target,FB Target Achievement,month_to_date,2026-05-25,sample://target,Thinking,Sample Support,FB,Region B,18000,9600,9600,0.533,240,176,168,0.955,0.700,62,57,210,175,4200,2640,0.629,1.00,1.20,6000,3520,0.587,1.30,1.60
+sample_target,FB Target Achievement,month_to_date,2026-05-25,sample://target,Thinking,Sample Support,FB,Region C,14000,7200,7200,0.514,200,147,132,0.898,0.660,65,55,220,180,3600,1800,0.500,0.90,0.90,5000,2600,0.520,1.20,1.30
+
