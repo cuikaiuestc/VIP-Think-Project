@@ -7,7 +7,7 @@
 ## 项目能力
 
 - 读取 registry 中登记的本地 normalized facts。
-- 生成 FB 周报 1.0 的 Markdown、Excel、HTML 示例输出。
+- 对标投放团队目前产出的 FB 渠道周报，生成 Markdown、Excel、HTML 示例输出。
 - 输出模块状态表，区分 auto / partial / manual / blocked。
 - 输出数据提取链路审计，标明每个模块的数据来源、时间窗、过滤条件与人工边界。
 - 保留 manual material supplement CSV，用于素材展示链接、素材图片文件、人工备注等人工字段。
@@ -92,4 +92,3 @@ GitHub 推送前必须确认仓库可见性、分支和 owner 授权。如果目
 ## 维护者联系说明
 
 完整能力包括 SmartBI DATA CLI 刷新、真实数据 registry、FB 投放问答助手、投放诊断策略和生产接入流程。本裁剪包不含这些能力。如需接入，请联系项目 owner。
-
