@@ -1,0 +1,27 @@
+{
+  "schema_version": "fb-weekly-sanitized-registry-v1",
+  "status": "fresh",
+  "generated_at": "2026-05-25T09:00:00",
+  "data_as_of": "2026-05-25",
+  "source_manifest": "data/sample_manifest.json",
+  "coverage": {
+    "month_to_date": true,
+    "previous_week": true,
+    "current_week_snapshot": true
+  },
+  "facts": {
+    "fb_channel_daily_monitor": "data/normalized_facts/sample_fb_channel_daily_monitor.csv",
+    "fb_link_type_daily_monitor": "data/normalized_facts/sample_fb_link_type_daily_monitor.csv",
+    "fb_material_chain_metrics": "data/normalized_facts/sample_fb_material_chain_metrics.csv",
+    "fb_target_achievement": "data/normalized_facts/sample_fb_target_achievement.csv",
+    "fb_new_old_plan_waste": "data/normalized_facts/sample_fb_new_old_plan_waste.csv",
+    "fb_adgroup_tags": "data/normalized_facts/sample_fb_adgroup_tags.csv"
+  },
+  "known_gaps": [
+    "CPT cost remains manual in this sanitized package.",
+    "Material preview links and image files remain manual.",
+    "This package does not refresh SmartBI data and does not include SmartBI DATA CLI implementation.",
+    "This package does not include the FB ad QA assistant, diagnosis brain, or automated decision logic."
+  ]
+}
+

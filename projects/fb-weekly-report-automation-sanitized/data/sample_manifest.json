@@ -1,0 +1,15 @@
+{
+  "schema_version": "fb-weekly-sanitized-manifest-v1",
+  "dataset": "mock_sample_only",
+  "generated_at": "2026-05-25T09:00:00",
+  "data_policy": "All rows are synthetic samples. Values preserve field shape only.",
+  "inputs": [
+    "data/normalized_facts/sample_fb_channel_daily_monitor.csv",
+    "data/normalized_facts/sample_fb_link_type_daily_monitor.csv",
+    "data/normalized_facts/sample_fb_material_chain_metrics.csv",
+    "data/normalized_facts/sample_fb_target_achievement.csv",
+    "data/normalized_facts/sample_fb_new_old_plan_waste.csv",
+    "data/normalized_facts/sample_fb_adgroup_tags.csv"
+  ]
+}
+
