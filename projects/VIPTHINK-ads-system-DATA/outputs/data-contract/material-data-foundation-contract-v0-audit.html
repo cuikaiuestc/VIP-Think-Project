@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>素材数据底座数据契约 v0 人工审计版</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; line-height: 1.65; color: #1f2933; max-width: 1120px; margin: 0 auto; padding: 40px 28px 80px; background: #f7f8fa; }
+  h1, h2, h3, h4 { line-height: 1.28; color: #111827; }
+  h1 { font-size: 30px; border-bottom: 3px solid #1f4e78; padding-bottom: 12px; margin-top: 0; }
+  h2 { margin-top: 36px; padding-top: 14px; border-top: 1px solid #d9e2ec; font-size: 23px; }
+  h3 { margin-top: 26px; font-size: 18px; color: #1f4e78; }
+  h4 { margin-top: 20px; font-size: 15px; color: #243b53; }
+  a { color: #0f5f99; }
+  nav#TOC { background: #eef6fb; border: 1px solid #c9dff0; border-radius: 8px; padding: 16px 20px; margin: 24px 0 32px; }
+  nav#TOC ul { margin: 6px 0; padding-left: 24px; }
+  blockquote { border-left: 4px solid #1f4e78; padding: 10px 16px; margin: 18px 0; background: #f2f7fb; color: #243b53; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0 26px; font-size: 14px; background: #fff; }
+  th, td { border: 1px solid #d8dee9; padding: 9px 10px; vertical-align: top; }
+  th { background: #eaf3f8; color: #102a43; font-weight: 700; }
+  tr:nth-child(even) td { background: #fbfdff; }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; background: #f1f5f9; padding: 1px 4px; border-radius: 4px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 14px 16px; overflow-x: auto; border-radius: 8px; }
+  pre code { background: transparent; padding: 0; color: inherit; }
+  strong { color: #111827; }
+  hr { border: 0; border-top: 1px solid #d9e2ec; margin: 32px 0; }
+  @media print { body { background: #fff; max-width: none; padding: 16px; } nav#TOC { break-after: page; } table { page-break-inside: auto; } tr { page-break-inside: avoid; page-break-after: auto; } }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">素材数据底座数据契约 v0 人工审计版</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#素材数据底座数据契约-v0"
+id="toc-素材数据底座数据契约-v0">素材数据底座数据契约 v0</a>
+<ul>
+<li><a href="#目标" id="toc-目标">目标</a></li>
+<li><a href="#非目标" id="toc-非目标">非目标</a></li>
+<li><a href="#核心口径" id="toc-核心口径">核心口径</a></li>
+<li><a href="#表-1material_dim" id="toc-表-1material_dim">表
+1：<code>material_dim</code></a>
+<ul>
+<li><a href="#字段定义" id="toc-字段定义">字段定义</a></li>
+<li><a href="#入仓字段门槛" id="toc-入仓字段门槛">入仓字段门槛</a></li>
+</ul></li>
+<li><a href="#表-2material_ad_mapping"
+id="toc-表-2material_ad_mapping">表
+2：<code>material_ad_mapping</code></a>
+<ul>
+<li><a href="#字段定义-1" id="toc-字段定义-1">字段定义</a></li>
+<li><a href="#映射来源优先级"
+id="toc-映射来源优先级">映射来源优先级</a></li>
+<li><a href="#跨渠道字段映射建议"
+id="toc-跨渠道字段映射建议">跨渠道字段映射建议</a></li>
+</ul></li>
+<li><a href="#和投放事实表的-join-方式"
+id="toc-和投放事实表的-join-方式">和投放事实表的 join 方式</a></li>
+<li><a href="#数据质量要求" id="toc-数据质量要求">数据质量要求</a></li>
+<li><a href="#字段评审动作清单"
+id="toc-字段评审动作清单">字段评审动作清单</a>
+<ul>
+<li><a href="#material_dim-字段评审"
+id="toc-material_dim-字段评审"><code>material_dim</code>
+字段评审</a></li>
+<li><a href="#material_ad_mapping-字段评审"
+id="toc-material_ad_mapping-字段评审"><code>material_ad_mapping</code>
+字段评审</a></li>
+<li><a href="#可能需要增补但暂不进入-v0-的字段"
+id="toc-可能需要增补但暂不进入-v0-的字段">可能需要增补但暂不进入 v0
+的字段</a></li>
+</ul></li>
+<li><a href="#三个角色的对齐要求"
+id="toc-三个角色的对齐要求">三个角色的对齐要求</a>
+<ul>
+<li><a href="#数据运营" id="toc-数据运营">数据运营</a></li>
+<li><a href="#投放系统开发者"
+id="toc-投放系统开发者">投放系统开发者</a></li>
+<li><a href="#素材系统开发者"
+id="toc-素材系统开发者">素材系统开发者</a></li>
+</ul></li>
+<li><a href="#数据运营后续评审点"
+id="toc-数据运营后续评审点">数据运营后续评审点</a></li>
+<li><a href="#review-handoff" id="toc-review-handoff">Review
+Handoff</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="素材数据底座数据契约-v0">素材数据底座数据契约 v0</h1>
+<p>生成日期：2026-05-20</p>
+<h2 id="目标">目标</h2>
+<p>本契约定义未来进入数仓、BI 和投放分析体系的素材数据底座
+v0。它不依赖当前手工回写表，也不等待数据运营现有表结构。当前任务只定义数据框架，供数据运营、自动化投放系统开发者和素材模块开发者评审。</p>
+<p>核心表：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>表名</th>
+<th>中文名</th>
+<th>主用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_dim</code></td>
+<td>素材资产维表</td>
+<td>描述一份可直接投放的成品素材及其分析变量</td>
+</tr>
+<tr>
+<td><code>material_ad_mapping</code></td>
+<td>素材与广告对象映射表</td>
+<td>记录
+<code>material_id -&gt; creative_id -&gt; ad_id</code>，支持跨渠道投放事实表
+join</td>
+</tr>
+</tbody>
+</table>
+<h2 id="非目标">非目标</h2>
+<ul>
+<li>不做真实数据库 migration。</li>
+<li>不写业务代码。</li>
+<li>不接 Meta、小红书、广点通、抖音、Google、TikTok 等 API。</li>
+<li>不设计素材模块内部系统、审核流、生产流或权限模型。</li>
+<li>不把当前 BI 回写表作为未来 P0 主架构。</li>
+<li>不用广告名、素材名、文件名作为主键。</li>
+<li>不引入复杂素材本体论；P0 只保留投放分析必要字段。</li>
+</ul>
+<h2 id="核心口径">核心口径</h2>
+<p><code>material_id</code> 的定义：</p>
+<blockquote>
+<p>公司内部认定的一份“可直接投放的成品素材”。</p>
+</blockquote>
+<p>变体规则：</p>
+<ul>
+<li>如果语言、字幕、尺寸、时长、剪辑、画面版本、音频版本等变化会影响投放表现分析，应生成新的
+<code>material_id</code>。</li>
+<li>如果只是文件存储路径、预览链接、命名格式或非分析变量变化，不应生成新的
+<code>material_id</code>。</li>
+<li><code>parent_material_id</code> 可作为 P1
+字段，用于未来归并同一创意母体下的不同版本，不作为 P0 必填。</li>
+</ul>
+<p>ID 边界：</p>
+<ul>
+<li>creative_id 是平台创意对象 ID，不是 <code>material_id</code>。</li>
+<li><code>video_id</code>、<code>image_hash</code>、<code>file_name</code>、<code>ad_name</code>、<code>creative_name</code>
+都不能替代 <code>material_id</code>。</li>
+<li>广告名、素材名、文件名只能作为辅助核对字段或过渡期命名解析线索，不作为主键或稳定
+join key。</li>
+<li>回写表只可作为历史治理线索，不进入未来 P0 主架构。</li>
+</ul>
+<h2 id="表-1material_dim">表 1：<code>material_dim</code></h2>
+<p>中文名：素材资产维表</p>
+<p>主键：</p>
+<pre class="text"><code>material_id</code></pre>
+<p>推荐唯一约束：</p>
+<pre class="text"><code>unique(material_id)</code></pre>
+<p>推荐 join key：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>join 对象</th>
+<th>join key</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_ad_mapping</code></td>
+<td><code>material_id</code></td>
+<td>素材资产到平台广告对象映射</td>
+</tr>
+<tr>
+<td>素材模块内部资产表</td>
+<td><code>material_id</code></td>
+<td>如素材模块后续自建资产系统，应以此字段对齐</td>
+</tr>
+<tr>
+<td>BI/分析层素材表现宽表</td>
+<td><code>material_id</code></td>
+<td>聚合素材跨渠道、跨账户、跨广告表现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字段定义">字段定义</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>中文名</th>
+<th>分组</th>
+<th>P0/P1</th>
+<th>类型建议</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_id</code></td>
+<td>内部素材 ID</td>
+<td>主键与生命周期</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>公司内部认定的一份可直接投放成品素材的稳定 ID</td>
+</tr>
+<tr>
+<td><code>material_name</code></td>
+<td>素材名称</td>
+<td>主键与生命周期</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>展示和人工核对字段，不可作为主键</td>
+</tr>
+<tr>
+<td><code>material_status</code></td>
+<td>素材状态</td>
+<td>主键与生命周期</td>
+<td>P0</td>
+<td>enum/string</td>
+<td>是</td>
+<td>建议枚举：<code>active</code>、<code>paused</code>、<code>archived</code>、<code>unknown</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>创建时间</td>
+<td>主键与生命周期</td>
+<td>P0</td>
+<td>datetime</td>
+<td>是</td>
+<td>素材资产在内部系统首次创建或登记时间</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>更新时间</td>
+<td>主键与生命周期</td>
+<td>P0</td>
+<td>datetime</td>
+<td>是</td>
+<td>素材资产元数据最近更新时间</td>
+</tr>
+<tr>
+<td><code>material_type</code></td>
+<td>素材类型</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>enum/string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；例如 image、video、kol、ai_video</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>素材格式</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>enum/string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；例如
+image、short_video、long_video、carousel</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>尺寸比例</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；例如
+<code>9:16</code>、<code>1:1</code>、<code>16:9</code></td>
+</tr>
+<tr>
+<td><code>duration_seconds</code></td>
+<td>视频时长秒数</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>number</td>
+<td>否</td>
+<td>图片可为空；视频建议填写</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td>语言</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>enum/string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；具体枚举待确认</td>
+</tr>
+<tr>
+<td><code>region_target</code></td>
+<td>目标地区</td>
+<td>素材分析变量</td>
+<td>P0 推荐</td>
+<td>enum/string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；素材面向的目标市场或地区分组</td>
+</tr>
+<tr>
+<td><code>topic</code></td>
+<td>题材</td>
+<td>内容变量</td>
+<td>P0 推荐</td>
+<td>string</td>
+<td>否</td>
+<td>分析推荐字段，不阻塞首版入仓；P0 不强制复杂标签体系</td>
+</tr>
+<tr>
+<td><code>selling_point</code></td>
+<td>卖点</td>
+<td>内容变量</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>评审可选字段；主卖点或诉求</td>
+</tr>
+<tr>
+<td><code>audience_segment</code></td>
+<td>目标人群段</td>
+<td>内容变量</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>评审可选字段；如高潜/非高潜等业务人群标签，需确认维护来源</td>
+</tr>
+<tr>
+<td><code>actor_or_kol</code></td>
+<td>演员或 KOL</td>
+<td>内容变量</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>评审可选字段；涉及隐私或合作信息时可脱敏或仅保留内部代号</td>
+</tr>
+<tr>
+<td><code>preview_url</code></td>
+<td>预览链接</td>
+<td>管理与核对</td>
+<td>P1</td>
+<td>string/url</td>
+<td>否</td>
+<td>评审可选字段；人工核对用，不作为系统 join key</td>
+</tr>
+<tr>
+<td><code>source_owner</code></td>
+<td>来源负责人</td>
+<td>管理与核对</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>素材元数据 owner 或维护方</td>
+</tr>
+<tr>
+<td><code>naming_code</code></td>
+<td>命名编码</td>
+<td>管理与核对</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>评审可选字段；文件名/广告名中可解析的辅助编码，不替代
+<code>material_id</code></td>
+</tr>
+<tr>
+<td><code>parent_material_id</code></td>
+<td>父素材 ID</td>
+<td>扩展字段</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>用于未来归并同一创意母体的不同变体</td>
+</tr>
+</tbody>
+</table>
+<h3 id="入仓字段门槛">入仓字段门槛</h3>
+<p><code>material_dim</code>
+不应因为分析标签不完整而阻塞首版入仓。字段分三层：</p>
+<h4 id="identity_required">identity_required</h4>
+<p>首版入仓必填，用于保证素材主数据可识别、可追责、可更新：</p>
+<pre class="text"><code>material_id
+material_name
+material_status
+created_at
+updated_at
+source_owner</code></pre>
+<h4 id="analysis_recommended">analysis_recommended</h4>
+<p>分析推荐字段，应尽量补齐，但缺失时不阻塞首版入仓；数据运营需要记录缺失率，并给出补齐
+owner：</p>
+<pre class="text"><code>material_type
+format
+aspect_ratio
+duration_seconds
+language
+region_target
+topic</code></pre>
+<h4 id="optional_review">optional_review</h4>
+<p>评审可选字段，进入 P1 或后续素材模块治理：</p>
+<pre class="text"><code>selling_point
+audience_segment
+actor_or_kol
+preview_url
+naming_code
+parent_material_id</code></pre>
+<h2 id="表-2material_ad_mapping">表
+2：<code>material_ad_mapping</code></h2>
+<p>中文名：素材与广告对象映射表</p>
+<p>用途：</p>
+<p>记录公司内部素材资产与不同广告平台对象之间的映射，使素材维表可以和
+Meta、小红书、广点通、抖音、Google、TikTok 等渠道投放事实表 join。</p>
+<p>推荐主键：</p>
+<pre class="text"><code>mapping_id</code></pre>
+<p>推荐唯一约束：</p>
+<pre class="text"><code>unique(channel, account_id, platform_ad_id, material_id, valid_from)</code></pre>
+<p>如果 v0 暂不生成 <code>mapping_id</code>，可临时使用以下组合键：</p>
+<pre class="text"><code>channel + account_id + platform_ad_id + material_id + valid_from</code></pre>
+<p>如果渠道能稳定取得
+<code>platform_creative_id</code>，建议额外增加包含
+<code>platform_creative_id</code>
+的唯一约束或质量检查；如果不能稳定取得，不允许伪造 creative key。</p>
+<p>推荐 join key：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>join 对象</th>
+<th>join key</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_dim</code></td>
+<td><code>material_id</code></td>
+<td>连接内部素材资产</td>
+</tr>
+<tr>
+<td>Meta 投放事实表</td>
+<td><code>channel + account_id + platform_ad_id + valid_from/valid_to</code></td>
+<td>Meta 场景 <code>platform_ad_id = ad_id</code>，生产 join
+仍必须带账户和有效期</td>
+</tr>
+<tr>
+<td>Meta 创意对象表</td>
+<td><code>channel + account_id + platform_creative_id</code></td>
+<td>仅在 <code>creative_id</code> 稳定取得时作为创意层级校验</td>
+</tr>
+<tr>
+<td>其他渠道投放事实表</td>
+<td><code>channel + account_id + platform_ad_id + valid_from/valid_to</code></td>
+<td>兼容小红书、广点通、抖音、Google、TikTok 等，不要求伪造 creative
+key</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字段定义-1">字段定义</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>中文名</th>
+<th>分组</th>
+<th>P0/P1</th>
+<th>类型建议</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mapping_id</code></td>
+<td>映射 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>映射表技术主键；可由系统生成</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>渠道</td>
+<td>映射主键/唯一性设计</td>
+<td>P0</td>
+<td>enum/string</td>
+<td>是</td>
+<td>例如 meta、xiaohongshu、gdt、douyin、google、tiktok</td>
+</tr>
+<tr>
+<td><code>account_id</code></td>
+<td>平台账户 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>外部平台账户 ID</td>
+</tr>
+<tr>
+<td><code>campaign_id</code></td>
+<td>平台广告计划 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>不同渠道层级命名不同，作为聚合和核对字段</td>
+</tr>
+<tr>
+<td><code>adset_id</code></td>
+<td>Meta 广告组 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>Meta 专用层级字段</td>
+</tr>
+<tr>
+<td><code>equivalent_unit_id</code></td>
+<td>等价投放单元 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>非 Meta 渠道用于承接广告组/单元/计划组等中间层级</td>
+</tr>
+<tr>
+<td><code>ad_id</code></td>
+<td>Meta 广告 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>Meta 原生字段，推荐同步保留</td>
+</tr>
+<tr>
+<td><code>platform_ad_id</code></td>
+<td>平台广告 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>跨渠道统一广告对象 ID；Meta 场景等于 <code>ad_id</code></td>
+</tr>
+<tr>
+<td><code>creative_id</code></td>
+<td>Meta 创意 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P1</td>
+<td>string</td>
+<td>否</td>
+<td>Meta 原生字段，推荐同步保留</td>
+</tr>
+<tr>
+<td><code>platform_creative_id</code></td>
+<td>平台创意 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>条件 P0</td>
+<td>string</td>
+<td>条件必填</td>
+<td>渠道可稳定取得时 P0 必填；不可取得时必须填写降级规则，并由
+Architecture / 数据运营确认；Meta 场景等于 <code>creative_id</code></td>
+</tr>
+<tr>
+<td><code>creative_key_degradation_rule</code></td>
+<td>创意键降级规则</td>
+<td>映射主键/唯一性设计</td>
+<td>条件 P0</td>
+<td>string</td>
+<td>条件必填</td>
+<td>当 <code>platform_creative_id</code>
+不可稳定取得时必填，说明降级到广告级、单元级或人工确认层的规则和责任人</td>
+</tr>
+<tr>
+<td><code>material_id</code></td>
+<td>内部素材 ID</td>
+<td>映射主键/唯一性设计</td>
+<td>P0</td>
+<td>string</td>
+<td>是</td>
+<td>连接 <code>material_dim</code> 的核心字段</td>
+</tr>
+<tr>
+<td><code>mapping_source</code></td>
+<td>映射来源</td>
+<td>映射质量</td>
+<td>P0</td>
+<td>enum/string</td>
+<td>是</td>
+<td>建议枚举：<code>system_created</code>、<code>name_parsed</code>、<code>manual_confirmed</code>、<code>api_inferred</code>、<code>historical_backfill</code></td>
+</tr>
+<tr>
+<td><code>mapping_confidence</code></td>
+<td>映射置信度</td>
+<td>映射质量</td>
+<td>P0</td>
+<td>number</td>
+<td>是</td>
+<td>0 到 1；强匹配建议为 1，弱匹配需低于人工确认</td>
+</tr>
+<tr>
+<td><code>valid_from</code></td>
+<td>映射生效开始时间</td>
+<td>映射有效期</td>
+<td>P0</td>
+<td>datetime</td>
+<td>是</td>
+<td>映射开始生效时间</td>
+</tr>
+<tr>
+<td><code>valid_to</code></td>
+<td>映射生效结束时间</td>
+<td>映射有效期</td>
+<td>P0</td>
+<td>datetime</td>
+<td>否</td>
+<td>当前仍生效时为空</td>
+</tr>
+<tr>
+<td><code>first_seen_at</code></td>
+<td>首次发现时间</td>
+<td>发现时间</td>
+<td>P0</td>
+<td>datetime</td>
+<td>是</td>
+<td>系统第一次发现该映射的时间</td>
+</tr>
+<tr>
+<td><code>last_seen_at</code></td>
+<td>最后发现时间</td>
+<td>发现时间</td>
+<td>P0</td>
+<td>datetime</td>
+<td>是</td>
+<td>最近一次确认该映射仍存在的时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="映射来源优先级">映射来源优先级</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th><code>mapping_source</code></th>
+<th style="text-align: right;">置信度建议</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>system_created</code></td>
+<td style="text-align: right;">1.00</td>
+<td>素材模块/投放系统创建广告时直接写入映射，P0 最推荐</td>
+</tr>
+<tr>
+<td><code>manual_confirmed</code></td>
+<td style="text-align: right;">0.95</td>
+<td>历史数据由人工确认后写入</td>
+</tr>
+<tr>
+<td><code>api_inferred</code></td>
+<td style="text-align: right;">0.70-0.90</td>
+<td>从平台 creative、asset、video/image 关系推断</td>
+</tr>
+<tr>
+<td><code>name_parsed</code></td>
+<td style="text-align: right;">0.40-0.80</td>
+<td>从广告名、素材名、文件名解析，只能作为过渡方案</td>
+</tr>
+<tr>
+<td><code>historical_backfill</code></td>
+<td style="text-align: right;">视规则而定</td>
+<td>从回写表、旧 BI 表或历史文件回填，只能作为历史线索</td>
+</tr>
+</tbody>
+</table>
+<p>正式素材表现 join 的默认准入门槛：</p>
+<ul>
+<li>默认只接受 <code>system_created</code> 和
+<code>manual_confirmed</code>。</li>
+<li><code>api_inferred</code>、<code>name_parsed</code>、<code>historical_backfill</code>
+只能进入候选/待确认层。</li>
+<li>如果确需把候选映射用于正式分析，必须达到确认阈值，并经过人工或数据运营确认后，才能进入正式素材表现
+join。</li>
+<li>确认阈值由 Architecture / 数据运营评审确定；在确认前，Dev
+不应把弱匹配映射当作事实关联。</li>
+</ul>
+<h3 id="跨渠道字段映射建议">跨渠道字段映射建议</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>统一字段</th>
+<th>Meta</th>
+<th>小红书/广点通/抖音/Google/TikTok 等</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code></td>
+<td><code>meta</code></td>
+<td>各渠道标准枚举</td>
+<td>用于分渠道 join 和过滤</td>
+</tr>
+<tr>
+<td><code>account_id</code></td>
+<td>Meta ad account id</td>
+<td>渠道账户 ID</td>
+<td>不可用账户名称替代</td>
+</tr>
+<tr>
+<td><code>campaign_id</code></td>
+<td><code>campaign_id</code></td>
+<td>计划/推广系列 ID</td>
+<td>可选但建议保留</td>
+</tr>
+<tr>
+<td><code>adset_id</code></td>
+<td><code>adset_id</code></td>
+<td>不一定存在</td>
+<td>Meta 专用字段</td>
+</tr>
+<tr>
+<td><code>equivalent_unit_id</code></td>
+<td>可为空或等于 <code>adset_id</code></td>
+<td>广告组/单元/计划组 ID</td>
+<td>兼容非 Meta 层级</td>
+</tr>
+<tr>
+<td><code>platform_ad_id</code></td>
+<td><code>ad_id</code></td>
+<td>渠道广告/创意投放实例 ID</td>
+<td>投放事实表主要 join key</td>
+</tr>
+<tr>
+<td><code>platform_creative_id</code></td>
+<td><code>creative_id</code></td>
+<td>渠道创意/素材对象 ID，如稳定可取则填写</td>
+<td>不稳定或不可取时必须走降级规则，不能伪造</td>
+</tr>
+<tr>
+<td><code>material_id</code></td>
+<td>内部生成</td>
+<td>内部生成</td>
+<td>公司内部素材主键</td>
+</tr>
+</tbody>
+</table>
+<h2 id="和投放事实表的-join-方式">和投放事实表的 join 方式</h2>
+<p>P0 生产 join
+口径必须带完整条件，避免跨账户误匹配和有效期重复累计：</p>
+<pre class="sql"><code>fact.channel = mapping.channel
+AND fact.account_id = mapping.account_id
+AND fact.platform_ad_id = mapping.platform_ad_id
+AND fact.date &gt;= mapping.valid_from
+AND (mapping.valid_to IS NULL OR fact.date &lt; mapping.valid_to)</code></pre>
+<p>如渠道稳定提供
+<code>platform_creative_id</code>，可增加创意层级校验：</p>
+<pre class="sql"><code>AND fact.platform_creative_id = mapping.platform_creative_id</code></pre>
+<p>但 <code>platform_creative_id</code> 不稳定或不可取时，不应伪造
+creative key；必须由 Architecture / 数据运营确认降级规则。</p>
+<p>Meta 只按 <code>ad_id</code> join
+的写法只能作为单账户调试示例，不能作为生产口径：</p>
+<pre class="text"><code>meta_ad_daily_fact.ad_id -&gt; material_ad_mapping.platform_ad_id</code></pre>
+<p>生产环境仍必须带上 <code>channel</code>、<code>account_id</code>
+和有效期条件。</p>
+<p>如果一条广告对象在不同时间引用不同素材，必须依赖
+<code>valid_from</code> / <code>valid_to</code> 判断某一天应关联哪个
+<code>material_id</code>。</p>
+<p>有效期重叠检查：</p>
+<ul>
+<li>同一 <code>channel + account_id + platform_ad_id</code> 在任意
+<code>fact.date</code> 只能命中一个有效 <code>material_id</code>。</li>
+<li>如果业务允许多素材组合，必须单独定义组合/分摊规则，不能默认 join
+后重复累计。</li>
+<li>在组合/分摊规则确认前，多命中记录应进入数据质量异常，不进入正式素材表现汇总。</li>
+</ul>
+<h2 id="数据质量要求">数据质量要求</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>检查项</th>
+<th>P0 要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_dim.material_id</code> 唯一性</td>
+<td>100% 唯一</td>
+</tr>
+<tr>
+<td><code>material_ad_mapping.mapping_id</code> 唯一性</td>
+<td>100% 唯一</td>
+</tr>
+<tr>
+<td><code>material_ad_mapping.material_id</code> 外键覆盖</td>
+<td>必须能在 <code>material_dim</code> 找到</td>
+</tr>
+<tr>
+<td><code>platform_ad_id</code> 空值率</td>
+<td>P0 不允许为空</td>
+</tr>
+<tr>
+<td><code>platform_creative_id</code> 空值率</td>
+<td>渠道可稳定取得时 P0 不允许为空；不可稳定取得时必须填写降级规则，并由
+Architecture / 数据运营确认</td>
+</tr>
+<tr>
+<td><code>mapping_confidence</code> 范围</td>
+<td>0 到 1</td>
+</tr>
+<tr>
+<td><code>valid_from</code> / <code>valid_to</code></td>
+<td>不允许同一 <code>channel + account_id + platform_ad_id</code> 在同一
+fact date 命中多个有效
+<code>material_id</code>，除非业务明确支持多素材组合并定义分摊规则</td>
+</tr>
+<tr>
+<td>正式 join 准入</td>
+<td>默认只接受
+<code>system_created</code>、<code>manual_confirmed</code>；其他来源需确认后才能进入正式
+join</td>
+</tr>
+<tr>
+<td>名称字段使用</td>
+<td>只能用于核对，不参与唯一约束</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字段评审动作清单">字段评审动作清单</h2>
+<p>本节用于人工审计字段是否需要增补、改变量名或调整优先级。默认原则：</p>
+<ul>
+<li>不改两张大表结构，除非发现字段无法支撑入仓或 join。</li>
+<li>不把素材模块内部流程字段提前塞进数据底座。</li>
+<li>不因为分析标签缺失阻塞首版入仓，但必须记录缺失率和补齐 owner。</li>
+<li>字段命名优先采用跨渠道通用名；平台原生名作为补充字段保留。</li>
+</ul>
+<h3 id="material_dim-字段评审"><code>material_dim</code> 字段评审</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>当前分层</th>
+<th>是否建议增补</th>
+<th>变量名是否建议调整</th>
+<th>优先级是否建议调整</th>
+<th>评审点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_id</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>必须由内部生成，不能用平台 ID、文件名或广告名替代</td>
+</tr>
+<tr>
+<td><code>material_name</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>只做展示和人工核对，不作为 join key</td>
+</tr>
+<tr>
+<td><code>material_status</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>需确认枚举是否够用：active、paused、archived、unknown</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>需确认是素材创建时间还是首次入仓时间</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>用于增量同步和字段变更追踪</td>
+</tr>
+<tr>
+<td><code>source_owner</code></td>
+<td>identity_required</td>
+<td>不增补</td>
+<td>可评审是否改为 <code>data_owner</code></td>
+<td>保持 P0 必填</td>
+<td>数据运营需确认 owner 是人、团队还是系统</td>
+</tr>
+<tr>
+<td><code>material_type</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 推荐</td>
+<td>需确认枚举，不阻塞入仓</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>可评审是否改为 <code>media_format</code></td>
+<td>保持 P0 推荐</td>
+<td><code>format</code>
+可能过泛，开发可评审是否更名以避免与文件格式混淆</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 推荐</td>
+<td>用于素材尺寸分析，缺失时记录缺失率</td>
+</tr>
+<tr>
+<td><code>duration_seconds</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 推荐</td>
+<td>图片可空，视频建议补齐</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 推荐</td>
+<td>不阻塞入仓，需确认枚举和多语言素材处理方式</td>
+</tr>
+<tr>
+<td><code>region_target</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>可评审是否改为 <code>target_region</code></td>
+<td>保持 P0 推荐</td>
+<td>需和投放事实表地区维度区分：这是素材目标地区，不一定等于实际投放地区</td>
+</tr>
+<tr>
+<td><code>topic</code></td>
+<td>analysis_recommended</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 推荐</td>
+<td>题材标签缺失不阻塞入仓</td>
+</tr>
+<tr>
+<td><code>selling_point</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>可用于后续素材内容分析，P0 不强制</td>
+</tr>
+<tr>
+<td><code>audience_segment</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>需确认是素材标签、人群包标签，还是投放策略标签</td>
+</tr>
+<tr>
+<td><code>actor_or_kol</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>涉及隐私或合作信息时建议使用内部代号</td>
+</tr>
+<tr>
+<td><code>preview_url</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>人工核对字段，不参与 join</td>
+</tr>
+<tr>
+<td><code>naming_code</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>仅作为命名解析线索，不能替代 <code>material_id</code></td>
+</tr>
+<tr>
+<td><code>parent_material_id</code></td>
+<td>optional_review</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>只有需要归并素材母体时启用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="material_ad_mapping-字段评审"><code>material_ad_mapping</code>
+字段评审</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>当前分层</th>
+<th>是否建议增补</th>
+<th>变量名是否建议调整</th>
+<th>优先级是否建议调整</th>
+<th>评审点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mapping_id</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>技术主键，建议系统生成</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>需确认渠道枚举</td>
+</tr>
+<tr>
+<td><code>account_id</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>防止跨账户 <code>platform_ad_id</code> 碰撞</td>
+</tr>
+<tr>
+<td><code>campaign_id</code></td>
+<td>P1</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>主要用于聚合和核对，不作为生产主 join 条件</td>
+</tr>
+<tr>
+<td><code>adset_id</code></td>
+<td>P1</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>Meta 专用字段；其他渠道不强行映射</td>
+</tr>
+<tr>
+<td><code>equivalent_unit_id</code></td>
+<td>P1</td>
+<td>不增补</td>
+<td>可评审是否改为 <code>platform_unit_id</code></td>
+<td>保持 P1</td>
+<td>用于非 Meta 中间层级；命名是否清晰需开发评审</td>
+</tr>
+<tr>
+<td><code>ad_id</code></td>
+<td>P1</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>Meta 原生冗余字段，生产统一用 <code>platform_ad_id</code></td>
+</tr>
+<tr>
+<td><code>platform_ad_id</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>跨渠道广告对象 join key</td>
+</tr>
+<tr>
+<td><code>creative_id</code></td>
+<td>P1</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P1</td>
+<td>Meta 原生冗余字段，不能替代 <code>material_id</code></td>
+</tr>
+<tr>
+<td><code>platform_creative_id</code></td>
+<td>条件 P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持条件 P0</td>
+<td>可稳定取得时必填；不可取得时走降级规则</td>
+</tr>
+<tr>
+<td><code>creative_key_degradation_rule</code></td>
+<td>条件 P0</td>
+<td>不增补</td>
+<td>可评审是否改为 <code>creative_key_fallback_rule</code></td>
+<td>保持条件 P0</td>
+<td>当 <code>platform_creative_id</code> 不可稳定取得时必填</td>
+</tr>
+<tr>
+<td><code>material_id</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>连接 <code>material_dim</code> 的核心字段</td>
+</tr>
+<tr>
+<td><code>mapping_source</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>正式 join 默认只接受 system_created、manual_confirmed</td>
+</tr>
+<tr>
+<td><code>mapping_confidence</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>需确定确认阈值，弱匹配不能直接进正式汇总</td>
+</tr>
+<tr>
+<td><code>valid_from</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>生产 join 必备</td>
+</tr>
+<tr>
+<td><code>valid_to</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 可空</td>
+<td>当前有效时为空</td>
+</tr>
+<tr>
+<td><code>first_seen_at</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>用于发现时间审计</td>
+</tr>
+<tr>
+<td><code>last_seen_at</code></td>
+<td>P0</td>
+<td>不增补</td>
+<td>不改</td>
+<td>保持 P0 必填</td>
+<td>用于映射有效性追踪</td>
+</tr>
+</tbody>
+</table>
+<h3 id="可能需要增补但暂不进入-v0-的字段">可能需要增补但暂不进入 v0
+的字段</h3>
+<p>以下字段不建议直接加入当前 v0，除非评审确认有明确下游使用场景：</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>候选字段</th>
+<th>所属表</th>
+<th>暂不加入原因</th>
+<th>触发加入条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_hash</code></td>
+<td><code>material_dim</code></td>
+<td>容易变成素材系统内部存储字段</td>
+<td>需要做文件去重或版权审计</td>
+</tr>
+<tr>
+<td><code>storage_uri</code></td>
+<td><code>material_dim</code></td>
+<td>涉及素材存储系统，不是投放分析必需</td>
+<td>素材模块确认开放稳定只读链接</td>
+</tr>
+<tr>
+<td><code>approval_status</code></td>
+<td><code>material_dim</code></td>
+<td>属于素材审核流程字段</td>
+<td>素材状态需要拆分“投放状态”和“审核状态”时</td>
+</tr>
+<tr>
+<td><code>asset_variant_id</code></td>
+<td><code>material_dim</code></td>
+<td>当前已有 <code>parent_material_id</code> 承接 P1 归并</td>
+<td>需要精细管理同一素材母体下多个版本</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>material_ad_mapping</code></td>
+<td>更像投放事实表维度</td>
+<td>需要素材在不同版位映射到不同素材表现时</td>
+</tr>
+<tr>
+<td><code>landing_page_url</code></td>
+<td><code>material_ad_mapping</code></td>
+<td>更像广告/创意对象字段</td>
+<td>分析确认落地页会影响素材映射判断时</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三个角色的对齐要求">三个角色的对齐要求</h2>
+<h3 id="数据运营">数据运营</h3>
+<p>数据运营需要确认这份契约是否可入仓，以及字段约束能否落地。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>对齐项</th>
+<th>必须确认的问题</th>
+<th>输出物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入仓层级</td>
+<td><code>material_dim</code> 和 <code>material_ad_mapping</code>
+放在哪一层，是否作为维表/桥表管理</td>
+<td>数仓层级建议</td>
+</tr>
+<tr>
+<td>字段类型</td>
+<td>字段类型、时间类型、枚举值是否可执行</td>
+<td>字段字典</td>
+</tr>
+<tr>
+<td>必填约束</td>
+<td><code>identity_required</code> 和 <code>material_ad_mapping</code>
+P0 字段是否能保证</td>
+<td>缺失率评估</td>
+</tr>
+<tr>
+<td>更新频率</td>
+<td>实时写入、小时级同步还是每日批处理</td>
+<td>SLA 和数据延迟</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>两张表分别由谁维护，字段变更由谁通知</td>
+<td>owner 清单</td>
+</tr>
+<tr>
+<td>join 方式</td>
+<td>是否认可生产 join
+条件：<code>channel + account_id + platform_ad_id + valid_from/valid_to</code></td>
+<td>join 口径确认</td>
+</tr>
+<tr>
+<td>数据质量</td>
+<td>如何检查有效期重叠、多命中、弱匹配误入正式汇总</td>
+<td>DQ 规则草案</td>
+</tr>
+<tr>
+<td>历史治理</td>
+<td>回写表、旧 BI 表、历史文件如何作为线索进入候选层</td>
+<td>历史初始化方案</td>
+</tr>
+</tbody>
+</table>
+<h3 id="投放系统开发者">投放系统开发者</h3>
+<p>投放系统开发者需要确认系统创建广告或同步广告时，如何写入或维护映射关系。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>对齐项</th>
+<th>必须确认的问题</th>
+<th>输出物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建时写映射</td>
+<td>系统创建广告时能否直接写入
+<code>material_id -&gt; platform_creative_id -&gt; platform_ad_id</code></td>
+<td>写入时机说明</td>
+</tr>
+<tr>
+<td>平台字段归一</td>
+<td>各渠道广告对象 ID 如何映射到 <code>platform_ad_id</code></td>
+<td>渠道字段映射表</td>
+</tr>
+<tr>
+<td>创意键降级</td>
+<td>非 Meta 渠道拿不到稳定 <code>platform_creative_id</code> 时如何填写
+<code>creative_key_degradation_rule</code></td>
+<td>降级规则</td>
+</tr>
+<tr>
+<td>映射来源</td>
+<td>哪些场景写 <code>system_created</code>，哪些场景只能写候选来源</td>
+<td><code>mapping_source</code> 规则</td>
+</tr>
+<tr>
+<td>正式 join 准入</td>
+<td>系统侧是否只消费 system_created /
+manual_confirmed，候选映射是否隔离</td>
+<td>读取规则</td>
+</tr>
+<tr>
+<td>时间有效期</td>
+<td>广告更换素材时如何关闭旧映射、开启新映射</td>
+<td><code>valid_from</code> / <code>valid_to</code> 更新规则</td>
+</tr>
+</tbody>
+</table>
+<h3 id="素材系统开发者">素材系统开发者</h3>
+<p>素材系统开发者需要确认 <code>material_id</code>
+如何生成，以及哪些素材分析变量能稳定提供。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>对齐项</th>
+<th>必须确认的问题</th>
+<th>输出物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>material_id</code> 生成</td>
+<td>是否能保证内部唯一、稳定、不复用</td>
+<td>ID 生成规则</td>
+</tr>
+<tr>
+<td>变体规则</td>
+<td>语言、字幕、尺寸、时长、剪辑变化何时生成新
+<code>material_id</code></td>
+<td>变体判断规则</td>
+</tr>
+<tr>
+<td>identity 字段</td>
+<td><code>material_name</code>、<code>material_status</code>、<code>created_at</code>、<code>updated_at</code>、<code>source_owner</code>
+是否可稳定提供</td>
+<td>identity 字段样例</td>
+</tr>
+<tr>
+<td>分析标签</td>
+<td><code>material_type</code>、<code>format</code>、<code>aspect_ratio</code>、<code>language</code>、<code>region_target</code>、<code>topic</code>
+的枚举和缺失率</td>
+<td>标签字典</td>
+</tr>
+<tr>
+<td>可选字段</td>
+<td><code>preview_url</code>、<code>naming_code</code>、<code>parent_material_id</code>
+是否需要首版提供</td>
+<td>P1 字段反馈</td>
+</tr>
+<tr>
+<td>隐私边界</td>
+<td><code>actor_or_kol</code> 是否可用内部代号替代真实姓名</td>
+<td>脱敏规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据运营后续评审点">数据运营后续评审点</h2>
+<ol type="1">
+<li>这两张表是否可进入数仓，推荐放在哪一层。</li>
+<li>字段类型、必填约束、唯一约束、枚举值是否可落地。</li>
+<li><code>material_id</code> 由谁生成、何时生成、如何保证唯一。</li>
+<li><code>material_dim</code> 的 owner
+是素材模块、数据运营还是投放系统。</li>
+<li><code>material_ad_mapping</code> 的 owner
+是投放系统、素材模块还是数据运营。</li>
+<li>更新频率：创建广告时实时写入，还是每日批处理同步。</li>
+<li>历史数据如何初始化，回写表和旧 BI 表只作为线索时由谁人工确认。</li>
+<li>与投放事实表的 join key 是否统一为
+<code>channel + account_id + platform_ad_id</code>。</li>
+<li>非 Meta 渠道的 <code>platform_creative_id</code>
+是否稳定可取，若不可取需给出降级规则。</li>
+<li>变更通知机制：字段新增、枚举变更、映射修正由谁通知下游。</li>
+</ol>
+<h2 id="review-handoff">Review Handoff</h2>
+<p>给 Review / QA 会话重点检查：</p>
+<ul>
+<li>是否清楚区分 <code>material_dim</code> 和
+<code>material_ad_mapping</code>。</li>
+<li>P0
+字段是否足够支撑素材表现分析，又没有过度引入素材系统内部流程字段。</li>
+<li><code>material_id</code>、<code>creative_id</code>、<code>video_id</code>、<code>image_hash</code>、<code>file_name</code>
+的边界是否清楚。</li>
+<li>唯一约束和 join key 是否能支撑跨渠道投放事实表 join。</li>
+<li>是否仍存在依赖当前回写表或广告名硬匹配作为主架构的表述。</li>
+</ul>
+</body>
+</html>
